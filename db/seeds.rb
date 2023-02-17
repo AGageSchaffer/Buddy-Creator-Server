@@ -10,7 +10,7 @@ the_damned = Party.create(name: "The Damned")
 
 puts "Generating Stats..."
 
-10.times do
+20.times do
     Stat.create(
         vigor: rand(100..200),
         attack: rand(10..20),
@@ -21,13 +21,21 @@ end
 
 puts "Creating Characters..."
 
-5.times do 
-    Character.create(
-        name: Faker::Name.name,
-        party: Party.all.sample,
-        stat: Stat.all.sample
-    )
+flateartharr = ["Austin Schaffer", "Ben Murchie", "Walker Le", "Caleigh Steill", "Jensen Miers", "Matt Ishida", "Jaz Singh", "Lantz Warrick", "Topher Ludlow", "Sam Chappel", "Rebecca Wollard", "Ja'Vonn Williams", "Colm Traci"]
+
+flateartharr.each_with_index do |f, index|
+Character.create(
+    name: "#{f}",
+    role: "Flatearth",
+    stat: Stat.all[index]
+)
 end
+
+Character.create(
+    name: "Sean",
+    role: "Flatearth",
+    stat: Stat.all[-1]
+)
 
 
 puts "Party creation successful"

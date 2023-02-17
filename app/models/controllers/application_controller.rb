@@ -26,6 +26,17 @@ class ApplicationController < Sinatra::Base
         charcreate.show_stat.to_json
     end
 
+    post '/parties' do
+        newparty = Party.create(name: params[:name])
+        newparty.flatearth
+        newparty.to_json
+    end
+
+    delete '/parties/:id' do
+        party = Party.find(params[:id])
+        party.destroy
+    end
+
     patch '/characters/:id' do
         char = Character.find(params[:id])
         char_stat = char.stat
